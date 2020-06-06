@@ -1,7 +1,6 @@
 package advcsv
 
 import (
-	"fmt"
 	"reflect"
 	"strconv"
 	"strings"
@@ -29,7 +28,6 @@ func (tags *Tags) UnmarshalCSV(data string) error {
 type Rating int
 
 func (rating *Rating) UnmarshalCSV(data string) error {
-	fmt.Println("AAs:" + data)
 	iRating, err := strconv.Atoi(data)
 
 	if err == nil {
@@ -136,7 +134,6 @@ func TestUnmarshalRecord(t *testing.T) {
 	res, _ := unmarshalRecord(record, reflect.TypeOf(r), csvFields)
 	var rating Rating
 	rating = 2
-	fmt.Println(res.Interface())
 	assert.EqualValues(t, Result{
 		"Title 1", "Content", &rating, &Tags{"1a", "23", "s"},
 	}, res.Interface())
